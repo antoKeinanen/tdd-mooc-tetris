@@ -13,10 +13,11 @@ export class RotatingShape {
         const rows = string.replaceAll(" ", "").split("\n");
         const width = rows[0].length;
         const height = rows.length;
-        return new RotatingShape(string.replaceAll(" ", "") + "\n", width, height);
+        const shape = rows.reduce((prev, row) => [...prev, ...row.split("")], []);
+        return new RotatingShape(shape, width, height);
     }
 
     toString() {
-        return this.shape;
+        return this.shape.reduce((p, c, i) => p + (i % this.width === 0 && i != 0 ? "\n" : "") + c) + "\n";
     }
 }
