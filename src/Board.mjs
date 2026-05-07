@@ -1,3 +1,5 @@
+import { RotatingShape } from "./RotatingShape.mjs";
+
 export class Board {
   width;
   height;
@@ -24,12 +26,15 @@ export class Board {
       throw new Error("already falling");
     }
 
-    const blockCoord = Math.floor(this.width / 2);
-    this.board[blockCoord] = shape;
-    this.moving.push(blockCoord);
+    const s = shape instanceof RotatingShape ? shape : RotatingShape.fromString(shape);
+    const o = Math.floor((this.width - s.width) / 2);
+    s.shape.forEach((c, i) => { if (c !== ".") { const p = Math.floor(i / s.width) * this.width + o + i % s.width; this.board[p] = c; this.moving.push(p); } });
   }
 
   tick() {
+    if (!this.moving.every(c => c + this.width < this.width * this.height && (this.board[c + this.width] === "." || this.moving.includes(c + this.width)))) { this.moving = []; return; }
+    this.moving.sort((a, b) => b - a);
+    
     const updatedMoving = [];
     this.moving.forEach((coord) => {
       if (coord + this.width > this.width * this.height) 
