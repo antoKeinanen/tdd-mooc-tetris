@@ -34,6 +34,8 @@ export class Board {
     this.moving.forEach((coord) => {
       if (coord + this.width > this.width * this.height) 
         return;
+      if (this.board[coord + this.width] != ".")
+        return;
 
       const block = this.board[coord];
       this.board[coord] = ".";
