@@ -27,6 +27,9 @@ export class RotatingShape {
     }
 
     rotateRight() {
+        if (this.orientations === 1) {
+            return this;
+        }
         const newRotations = (this.rotations + 1) % this.orientations;
         const newShape = this.shape.map((_, i) => {
             return this.shape[(this.width - 1 - (i % this.width)) * this.width + Math.floor(i / this.width)];
@@ -36,6 +39,9 @@ export class RotatingShape {
     }
 
     rotateLeft() {
+        if (this.orientations === 1) {
+            return this;
+        }
         if (this.orientations === 2) {
             return this.rotateRight();
         }
