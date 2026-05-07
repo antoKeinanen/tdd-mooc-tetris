@@ -16,6 +16,10 @@ export class Board {
   }
 
   drop(shape) {
+    if (this.moving.length != 0) {
+      throw new Error("already falling");
+    }
+
     const blockCoord = Math.floor(this.width / 2);
     this.board[blockCoord] = shape;
     this.moving.push(blockCoord);
