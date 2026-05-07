@@ -20,4 +20,11 @@ export class RotatingShape {
     toString() {
         return this.shape.reduce((p, c, i) => p + (i % this.width === 0 && i != 0 ? "\n" : "") + c) + "\n";
     }
+
+    rotateRight() {
+        this.shape = this.shape.map((_, i) => {
+            return this.shape[(this.width - 1 - (i % this.width)) * this.width + Math.floor(i / this.width)];
+        });
+        return this;
+    }
 }
