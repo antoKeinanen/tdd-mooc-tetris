@@ -22,9 +22,16 @@ export class RotatingShape {
     }
 
     rotateRight() {
-        this.shape = this.shape.map((_, i) => {
+        const newShape = this.shape.map((_, i) => {
             return this.shape[(this.width - 1 - (i % this.width)) * this.width + Math.floor(i / this.width)];
         });
-        return this;
+        return new RotatingShape(newShape, this.width, this.height);
+    }
+
+    rotateLeft() {
+        const newShape = this.shape.map((_, i) => {
+            return this.shape[i % this.width * this.width + (this.width - 1 - Math.floor(i / this.width))];
+        });
+        return new RotatingShape(newShape, this.width, this.height);
     }
 }
