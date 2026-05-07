@@ -26,10 +26,14 @@ export class Board {
   }
 
   tick() {
+    const updatedMoving = [];
     this.moving.forEach((coord) => {
       const block = this.board[coord];
       this.board[coord] = ".";
       this.board[coord + this.width] = block;
+      updatedMoving.push(coord + this.width);
     });
+
+    this.moving = updatedMoving;
   }
 }
