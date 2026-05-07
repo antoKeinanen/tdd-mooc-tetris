@@ -20,4 +20,12 @@ export class Board {
     this.board[blockCoord] = shape;
     this.moving.push(blockCoord);
   }
+
+  tick() {
+    this.moving.forEach((coord) => {
+      const block = this.board[coord];
+      this.board[coord] = ".";
+      this.board[coord + this.width] = block;
+    });
+  }
 }
