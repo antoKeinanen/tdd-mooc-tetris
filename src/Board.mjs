@@ -31,6 +31,7 @@ export class Board {
     s.shape.forEach((c, i) => { if (c !== ".") { const p = Math.floor(i / s.width) * this.width + o + i % s.width; this.board[p] = c; this.moving.push(p); } });
   }
   left() {
+    if (this.moving.some((coord) => coord % this.width == 0)) return;
     const updatedMoving = [];
     this.moving.forEach((coord) => {
       const block = this.board[coord];
