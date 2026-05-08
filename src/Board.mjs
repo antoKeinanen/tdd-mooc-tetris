@@ -40,6 +40,16 @@ export class Board {
     });
     this.moving = updatedMoving;
   }
+  right() {
+    const updatedMoving = [];
+    this.moving.sort((a, b) => b - a);
+    this.moving.forEach((coord) => {
+      const block = this.board[coord];
+      this.board[coord] = ".";
+      this.board[coord + 1] = block;
+    });
+    this.moving = updatedMoving;
+  }
 
   tick() {
     if (!this.moving.every(c => c + this.width < this.width * this.height && (this.board[c + this.width] === "." || this.moving.includes(c + this.width)))) { this.moving = []; return; }
