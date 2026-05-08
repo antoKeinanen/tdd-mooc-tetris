@@ -29,7 +29,6 @@ describe("a falling tetromino can be moved", () => {
     board.drop(Tetromino.T_SHAPE);
     board.right();
 
-
     expect(board.toString()).to.equalShape(
       `.....T....
        ....TTT...
@@ -41,10 +40,16 @@ describe("a falling tetromino can be moved", () => {
    });
 
   test.skip("down", () => {
-    expect(shape.rotateLeft().toString()).to.equalShape(
-      `CFI
-       BEH
-       ADG`
+    board.drop(Tetromino.T_SHAPE);
+    board.right();
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ....T.....
+       ...TTT....
+       ..........
+       ..........
+       ..........`
     );
   });
 });
