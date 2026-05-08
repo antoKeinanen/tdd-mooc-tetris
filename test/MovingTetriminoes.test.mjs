@@ -25,13 +25,20 @@ describe("a falling tetromino can be moved", () => {
     );
    });
 
-  test.skip("right", () => {
-    expect(shape.rotateRight().toString()).to.equalShape(
-      `GDA
-       HEB
-       IFC`
+  test("right", () => {
+    board.drop(Tetromino.T_SHAPE);
+    board.right();
+
+
+    expect(board.toString()).to.equalShape(
+      `.....T....
+       ....TTT...
+       ..........
+       ..........
+       ..........
+       ..........`
     );
-  });
+   });
 
   test.skip("down", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
