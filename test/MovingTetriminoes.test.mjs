@@ -7,11 +7,11 @@ describe("a falling tetromino can be moved", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
+    board.drop(Tetromino.T_SHAPE);
   });
 
 
   test("left", () => {
-    board.drop(Tetromino.T_SHAPE);
     board.left();
 
 
@@ -26,7 +26,6 @@ describe("a falling tetromino can be moved", () => {
    });
 
   test("right", () => {
-    board.drop(Tetromino.T_SHAPE);
     board.right();
 
     expect(board.toString()).to.equalShape(
@@ -39,9 +38,8 @@ describe("a falling tetromino can be moved", () => {
     );
    });
 
-  test.skip("down", () => {
-    board.drop(Tetromino.T_SHAPE);
-    board.right();
+  test("down", () => {
+    board.down();
 
     expect(board.toString()).to.equalShape(
       `..........
