@@ -42,12 +42,14 @@ export class Board {
     this.moving = updatedMoving;
   }
   right() {
+    if (this.moving.some((coord) => coord % this.width == this.width - 1)) return;
     const updatedMoving = [];
     this.moving.sort((a, b) => b - a);
     this.moving.forEach((coord) => {
       const block = this.board[coord];
       this.board[coord] = ".";
       this.board[coord + 1] = block;
+      updatedMoving.push(coord + 1);
     });
     this.moving = updatedMoving;
   }
