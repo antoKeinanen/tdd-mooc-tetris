@@ -118,3 +118,42 @@ describe("it cannot be moved", () => {
     );
     });
 });
+
+describe("it cannot be moved", () => {
+    let board;
+    beforeEach(() => {
+        board = new Board(10, 6);
+        board.drop(Tetromino.O_SHAPE);
+        board.tick();
+        board.tick();
+        board.tick();
+        board.tick();
+        board.tick();
+
+        board.drop(Tetromino.O_SHAPE);
+        board.tick();
+        board.tick();
+        board.tick();
+        board.tick();
+    });
+
+    test("left through other blocks", () => {
+        board.drop(Tetromino.O_SHAPE);
+        board.right();
+        board.right();
+        board.tick();
+        board.tick();
+        board.tick();
+        board.left();
+
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ....OO....
+             ....OOOO..
+             ....OOOO..
+             ....OO....`
+        )
+    });
+});
+
