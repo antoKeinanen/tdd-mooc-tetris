@@ -96,4 +96,25 @@ describe("it cannot be moved", () => {
        ..........`
     );
     });
+
+    test("down beyond the board", () => {
+        board.down();
+        board.down();
+        board.down();
+        board.down();
+        board.down();
+        board.down();
+        board.down();
+        board.down();
+
+
+    expect(board.toString()).to.equalShape(
+      `..........
+       ..........
+       ..........
+       ..........
+       ....T.....
+       ...TTT....`
+    );
+    });
 });
