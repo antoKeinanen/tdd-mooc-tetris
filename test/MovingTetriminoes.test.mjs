@@ -155,5 +155,24 @@ describe("it cannot be moved", () => {
              ....OO....`
         )
     });
+
+    test("right through other blocks", () => {
+        board.drop(Tetromino.O_SHAPE);
+        board.left();
+        board.left();
+        board.tick();
+        board.tick();
+        board.tick();
+        board.right();
+
+        expect(board.toString()).to.equalShape(
+            `..........
+             ..........
+             ....OO....
+             ..OOOO....
+             ..OOOO....
+             ....OO....`
+        )
+    });
 });
 
