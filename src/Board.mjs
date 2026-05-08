@@ -51,6 +51,10 @@ export class Board {
     this.moving = updatedMoving;
   }
 
+  down() {
+    this.tick();
+  }
+
   tick() {
     if (!this.moving.every(c => c + this.width < this.width * this.height && (this.board[c + this.width] === "." || this.moving.includes(c + this.width)))) { this.moving = []; return; }
     this.moving.sort((a, b) => b - a);
