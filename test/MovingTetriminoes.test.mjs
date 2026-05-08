@@ -14,7 +14,6 @@ describe("a falling tetromino can be moved", () => {
   test("left", () => {
     board.left();
 
-
     expect(board.toString()).to.equalShape(
       `...T......
        ..TTT.....
@@ -50,4 +49,30 @@ describe("a falling tetromino can be moved", () => {
        ..........`
     );
   });
+});
+
+describe("it cannot be moved", () => {
+    let board;
+    beforeEach(() => {
+        board = new Board(10, 6);
+        board.drop(Tetromino.T_SHAPE);
+    });
+    
+    test("left beyond the board", () => {
+        board.left();
+        board.left();
+        board.left();
+        board.left();
+        board.left();
+
+
+    expect(board.toString()).to.equalShape(
+      `.T........
+       TTT.......
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+    });
 });
