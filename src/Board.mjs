@@ -44,6 +44,8 @@ export class Board {
   }
   right() {
     if (this.moving.some((coord) => coord % this.width == this.width - 1)) return;
+    if (this.moving.some((coord) => this.board[coord + 1] !== "." && !this.moving.includes(coord + 1))) return;
+
     const updatedMoving = [];
     this.moving.sort((a, b) => b - a);
     this.moving.forEach((coord) => {
