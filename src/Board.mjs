@@ -30,6 +30,16 @@ export class Board {
     const o = Math.floor((this.width - s.width) / 2);
     s.shape.forEach((c, i) => { if (c !== ".") { const p = Math.floor(i / s.width) * this.width + o + i % s.width; this.board[p] = c; this.moving.push(p); } });
   }
+  left() {
+    const updatedMoving = [];
+    this.moving.forEach((coord) => {
+      const block = this.board[coord];
+      this.board[coord] = ".";
+      this.board[coord - 1] = block;
+      updatedMoving.push(coord-1);
+    });
+    this.moving = updatedMoving;
+  }
 
   tick() {
     if (!this.moving.every(c => c + this.width < this.width * this.height && (this.board[c + this.width] === "." || this.moving.includes(c + this.width)))) { this.moving = []; return; }
